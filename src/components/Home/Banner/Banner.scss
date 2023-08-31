@@ -3,14 +3,14 @@
 .banner {
   background: radial-gradient(ellipse at 50% 50%, #494848, #121111);
   position: relative;
-  padding: 43px 0;
+  padding: 50px 0px 80px 0px;
   @include md {
     height: calc(100vh - 80px);
   }
   .content {
     height: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     flex-direction: column-reverse;
     max-width: calc(100% - 20px);
@@ -23,18 +23,10 @@
     .banner-img {
       position: relative;
       z-index: 9;
-      width: 200px;
-      margin-bottom: 20px;
+      width: 300px;
+      margin-bottom: 40px;
       @include md {
-        width: 500px;
-        margin-right: 60px;
-        margin-top: 50px;
-        margin-bottom: 0;
-      }
-      @include xxl {
-        width: 600px;
-        margin-right: 0;
-        margin-top: 0;
+        width: 440px;
       }
     }
     .text-content {
@@ -52,12 +44,14 @@
         left: 0;
       }
       h1 {
+        font-weight: 100;
+        text-transform: uppercase;
         font-family: "Chloe-Regular", sans-serif;
-        font-size: 30px;
+        font-size: 36px;
         line-height: 1;
         margin-bottom: 20px;
         @include md {
-          font-size: 40px;
+          font-size: 80px;
         }
       }
       p {
@@ -65,12 +59,10 @@
         max-width: 300px;
         font-size: 14px;
         line-height: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
         @include md {
           max-width: 500px;
-          font-size: 12px;
           line-height: 14px;
-          margin-bottom: 40px;
         }
       }
       .ctas {

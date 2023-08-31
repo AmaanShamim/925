@@ -5,8 +5,8 @@ import { TbSearch } from "react-icons/tb";
 import { CgShoppingCart } from "react-icons/cg";
 import { AiOutlineHeart } from "react-icons/ai";
 
-// import { Search } from "./Search/Search";
-// import { Cart } from "../Cart/Cart";
+import Search  from "./Search/Search";
+import Cart from "../Cart/Cart";
 // import { Context } from "../../utils/context";
 
 import "./Header.scss";
@@ -15,6 +15,8 @@ const Header = () => {
   const [visibleText, setVisibleText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [scrolled, setScrolled] = useState(false);
+  const [showCart, setShowCart] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const logo = "nine.";
 
   useEffect(() => {
@@ -38,38 +40,42 @@ const Header = () => {
 
   const handleScroll = () => {
     const offset = window.scrollY;
-    if(offset > 200) {
+    if (offset > 200) {
       setScrolled(true);
     } else {
       setScrolled(false);
     }
-  }
+  };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <header className={`main-header ${scrolled? 'sticky-header' : ''}`}>
-      <div className="header-content">
-        <div className="left">{visibleText}</div>
-        <ul className="center">
-          <li>home</li>
-          <li>shop</li>
-          <li>about us</li>
-          <li>social media</li>
-          <li>bestsellers</li>
-        </ul>
-        <div className="right">
-          <TbSearch />
-          <AiOutlineHeart />
-          <span className="cart-icon">
-            <CgShoppingCart />
-            <span>5</span>
-          </span>
+    <>
+      <header className={`main-header ${scrolled ? "sticky-header" : ""}`}>
+        <div className="header-content">
+          <div className="left">{visibleText}</div>
+          <ul className="center">
+            <li>home</li>
+            <li>shop</li>
+            <li>about us</li>
+            <li>social media</li>
+            <li>bestsellers</li>
+          </ul>
+          <div className="right">
+            <TbSearch onClick={() => setShowSearch(true)} />
+            <AiOutlineHeart />
+            <span className="cart-icon" onClick={() => setShowCart(true)}>
+              <CgShoppingCart />
+              <span>5</span>
+            </span>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+      {showCart && <Cart setShowCart={setShowCart} />}
+      {showSearch && <Search setShowSearch={setShowSearch} />}
+    </>
   );
 };
 
