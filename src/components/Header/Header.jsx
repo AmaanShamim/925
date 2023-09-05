@@ -1,13 +1,13 @@
 import { useEffect, useState, useContext } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { TbSearch } from "react-icons/tb";
 import { CgShoppingCart } from "react-icons/cg";
 import { AiOutlineHeart } from "react-icons/ai";
 
-import Search  from "./Search/Search";
+import Search from "./Search/Search";
 import Cart from "../Cart/Cart";
-// import { Context } from "../../utils/context";
+import { Context } from "../../utils/context";
 
 import "./Header.scss";
 
@@ -17,6 +17,8 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const { cartCount } = useContext(Context);
+  const navigate = useNavigate();
   const logo = "nine.";
 
   useEffect(() => {
@@ -55,9 +57,11 @@ const Header = () => {
     <>
       <header className={`main-header ${scrolled ? "sticky-header" : ""}`}>
         <div className="header-content">
-          <div className="left">{visibleText}</div>
+          <div className="left" onClick={() => navigate("/")}>
+            {visibleText}
+          </div>
           <ul className="center">
-            <li>home</li>
+            <li onClick={() => navigate("/")}>home</li>
             <li>shop</li>
             <li>about us</li>
             <li>social media</li>
@@ -68,7 +72,7 @@ const Header = () => {
             <AiOutlineHeart />
             <span className="cart-icon" onClick={() => setShowCart(true)}>
               <CgShoppingCart />
-              <span>5</span>
+              {!!cartCount && <span>{cartCount} </span>}
             </span>
           </div>
         </div>

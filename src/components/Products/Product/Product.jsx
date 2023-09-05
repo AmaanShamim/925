@@ -1,19 +1,27 @@
 import "./Product.scss";
-import ProductImg from "../../../assets/products/product-img.jpg";
+import { useNavigate } from "react-router-dom";
 
-const Product = () => {
-    return (
-        <div className="product-card">
-            <div className="thumbnail">
-                <img src={ProductImg} alt="" />
-            </div>
-            <div className="product-details">
-                <span className="name">Product Name</span>
-                <span className="price">&#8377;499</span>
-                <span className="price-cut">&#8377;1499</span>
-            </div>
-        </div>
-    );
+const Product = ({ id, data }) => {
+
+  const navigate = useNavigate();
+
+  return (
+    <div className="product-card" onClick={()=> navigate("/product/"+id)} >
+      <div className="thumbnail">
+        <img
+          src={
+            process.env.REACT_APP_DEV_URL + data.image.data[0].attributes.url
+          }
+          alt=""
+        />
+      </div>
+      <div className="product-details">
+        <span className="name">&#8377;{data.title} </span>
+        <span className="price">&#8377;{data.price} </span>
+        <span className="price-cut">{data.priceCut} </span>
+      </div>
+    </div>
+  );
 };
 
 export default Product;

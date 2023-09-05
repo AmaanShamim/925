@@ -6,35 +6,62 @@ import {
   FaInstagram,
   FaCartPlus,
 } from "react-icons/fa";
-import ProductImg from "../../assets/products/product-img.jpg";
+import { useState, useContext } from "react";
+import { useParams } from "react-router-dom";
+import useFetch from "../../hooks/useFetch";
+import { Context } from "../../utils/context";
 
 const SingleProduct = () => {
+  const [quantity, setQuantity] = useState(1);
+  const { id } = useParams();
+  const { data } = useFetch(`/api/products?populate=*&[filters][id]=${id}`);
+  const product = data?.data[0].attributes;
+  const { handleAddToCart } = useContext(Context);
+  const increment = () => {
+    setQuantity((prevState) => prevState + 1);
+  };
+
+  if (!data) return;
+  const decrement = () => {
+    setQuantity((prevState) => {
+      if (prevState === 1) return 1;
+      return prevState - 1;
+    });
+  };
+
   return (
     <div className="single-product-main-content">
       <div className="layout">
         <div className="single-product-page">
           <div className="left">
-            <img src={ProductImg} alt="" />
+            <img
+              src={
+                process.env.REACT_APP_DEV_URL +
+                product.image.data[0].attributes.url
+              }
+              alt=""
+            />
           </div>
           <div className="right">
-            <span className="name">Product Name</span>
+            <span className="name">{product.title} </span>
             <div className="price-banner">
-              <span className="price">&#8377;499</span>
-              <span className="price-cut">&#8377;1499</span>
+              <span className="price">&#8377;{product.price} </span>
+              <span className="price-cut">&#8377;{product.priceCut} </span>
             </div>
-            <span className="description">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit
-              blanditiis et nobis asperiores eius sit expedita, corrupti in odio
-              iure ab architecto eaque adipisci quisquam minima numquam omnis,
-              possimus autem.
-            </span>
+            <span className="description">{product.description}</span>
             <div className="cart-buttons">
               <div className="quantity-buttons">
-                <span>-</span>
-                <span>5</span>
-                <span>+</span>
+                <span onClick={decrement}>-</span>
+                <span>{quantity} </span>
+                <span onClick={increment}>+</span>
               </div>
-              <button className="add-to-cart-button">
+              <button
+                className="add-to-cart-button"
+                onClick={() => {
+                  handleAddToCart(data.data[0], quantity);
+                  setQuantity(1);
+                }}
+              >
                 <FaCartPlus size={20} />
                 ADD TO CART
               </button>
@@ -42,8 +69,8 @@ const SingleProduct = () => {
             <span className="divider" />
             <div className="info-item">
               <span className="text-bold">
-                Category :
-                <span>Ring</span>
+                Category :{" "}
+                <span>{product.categories.data[0].attributes.title}</span>
               </span>
               <span className="text-bold">
                 Share :
@@ -56,7 +83,10 @@ const SingleProduct = () => {
             </div>
           </div>
         </div>
-        <RealatedProducts />
+        <RealatedProducts
+          productId={id}
+          categoryId={product.categories.data[0].id}
+        />
       </div>
     </div>
   );
