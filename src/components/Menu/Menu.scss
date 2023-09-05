@@ -1,0 +1,49 @@
+@import "../../css-config/mixins.scss";
+
+.menu-bar {
+  z-index: 9;
+  width: 100%;
+  bottom: 10px;
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column-reverse;
+  @include md {
+    display: none;
+  }
+  .menu {
+    z-index: 2;
+    gap: 5px;
+    width: 340px;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    text-align: center;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+    background-color: #212121;
+    text-transform: uppercase;
+    font-family: "Montserrat", sans-serif;
+    .svg {
+      font-size: 20px;
+    }
+    &.menu-on {
+      border-radius: 0px 0px 8px 8px;
+    }
+  }
+  .menu-item {
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,81 @@
+@import "../../css-config/mixins.scss";
+
+.container {
+  max-width: 340px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @include md {
+    max-width: 1200px;
+    padding: 40px 0;
+  }
+  .title {
+    font-family: "Chloe-Regular", sans-serif;
+    font-size: 40px;
+    margin: 10px;
+    @include md {
+      font-size: 60px;
+      padding-bottom: 20px;
+    }
+  }
+  .sub-title {
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+  .description {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    text-align: justify;
+    color: rgb(82, 82, 82);
+    margin-bottom: 30px;
+  }
+  .map {
+    width: 340px;
+    @include md {
+      width: 1200px;
+    }
+    .map-title {
+      font-family: "Montserrat", sans-serif;
+      font-size: 20px;
+      text-transform: capitalize;
+    }
+    iframe {
+      width: 100%;
+    }
+  }
+  .social-icons {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    @include md {
+      gap: 15px;
+    }
+    .icons {
+      cursor: pointer;
+      font-family: "Montserrat", sans-serif;
+      background-color: #d1d1d1;
+      padding: 8px;
+      border-radius: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      @include md {
+        font-size: 24px;
+        padding: 15px;
+        border-radius: 24px;
+        gap: 10px;
+      }
+      svg {
+        font-size: 14px;
+        @include md {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+}
