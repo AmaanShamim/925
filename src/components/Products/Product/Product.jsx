@@ -16,9 +16,9 @@ const Product = ({ id, data }) => {
         />
       </div>
       <div className="product-details">
-        <span className="name">&#8377;{data.title} </span>
+        <span className="name">{data.title} </span>
         <span className="price">&#8377;{data.price} </span>
-        <span className="price-cut">{data.priceCut} </span>
+        <span className="price-cut">&#8377;{data.priceCut} </span>
       </div>
     </div>
   );

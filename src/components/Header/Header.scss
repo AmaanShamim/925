@@ -30,6 +30,7 @@
       list-style: none;
       display: none;
       gap: 25px;
+      margin-bottom: 0;
       @include md {
         display: flex;
         position: absolute;

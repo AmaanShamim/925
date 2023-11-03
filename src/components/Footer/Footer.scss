@@ -2,6 +2,10 @@
 
 .footer {
   width: 100%;
+  margin-bottom: 75px;
+  @include md {
+    margin-bottom: 0;
+  }
   .footer-content {
     padding: 50px 20px;
     margin: 0 auto;

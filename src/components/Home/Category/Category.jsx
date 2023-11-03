@@ -16,6 +16,7 @@ const Category = ({ categories }) => {
               }
               alt=""
             />
+            <span className="categoryTitle">{item.attributes.title}</span>
           </div>
         ))}
       </div>

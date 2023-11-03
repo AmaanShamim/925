@@ -33,7 +33,7 @@ const Home = () => {
       <div className="main-content">
         <div className="layout">
           <Category categories={categories} />
-          <Products headingText={"Popular Products"} products={products} />
+          <Products headingText={"Bestsellers"} products={products} />
         </div>
       </div>
     </>
